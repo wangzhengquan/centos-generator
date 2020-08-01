@@ -1,4 +1,5 @@
 anaconda 
 anaconda-core 
 anaconda-dracut
-ostree
+grub2-efi-x64-cdboot-1:2.02-0.81.el7.centos.x86_64
+

@@ -1,0 +1,13 @@
+anaconda 
+anaconda-core 
+anaconda-dracut
+ostree
+grub2-common
+grub2-efi-x64-cdboot
+shim-ia32
+grub2-efi-ia32-cdboot
+redhat-upgrade-dracut-plymouth
+at-spi
+tigervnc-server-module 
+bitmap-fangsongti-fonts
+kexec-tools-anaconda-addon

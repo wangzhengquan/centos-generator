@@ -24,8 +24,9 @@ function do_clean
 }
 
 
-function re_create_repo() {
-  sudo yumdownloader `cat config/pkg.list`  --destdir=${DVD}/Packages
+function create_repo() {
+  # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
+  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
 
   chmod -R +rwX ${DVD}/repodata
   chmod +rwX ${DVD} ; # createrepo demand
@@ -41,16 +42,13 @@ function re_create_repo() {
 
 function genimg() {
 
-  
-  re_create_repo
-
   do_clean
 
   if sestatus |grep -E "Current mode:.*enforcing";then
   setenforce 0
   fi
 
-  sudo lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID} --nomacboot  --volid="${ProduceName}"  --isfinal \
+  sudo lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID} --volid="${ProduceName}"  --isfinal \
   -s ${mirror} \
   ${img}
 
@@ -61,9 +59,9 @@ function genimg() {
 
   mkdir -p ${img}/{Packages,repodata}
 
-  #cp -rf ${DVD}/Packages/*.rpm  ${img}/Packages
-  #rm -rf ${img}/Packages/*.i686.rpm
-  # rm -rf  ${img}/images/boot.iso
+  cp -a ${DVD}/Packages/* ${img}/Packages
+  rm -rf ${img}/Packages/*.i686.rpm
+  rm -rf  ${img}/images/boot.iso
   cd ${img}/ && createrepo -g ../config/comps.xml . && cd ../
 
   chown -R $LOGNAME ${img}
@@ -73,9 +71,10 @@ function genimg() {
 
 
 function geniso() {
-  rm -rf *.iso
-  cp ${DVD}/images/efiboot.img ${img}/images/
+  # rm -rf ${img}/Packages/*
+  # cp -a /data/centos/Packages/*  ${img}/Packages
 
+  rm -rf *.iso
   # Create the new ISO file.
   genisoimage -U -r -v -T -J -joliet-long                                      \
               -V ${ProduceName} -A ${ProduceName} -volset ${ProduceName}       \
@@ -86,14 +85,14 @@ function geniso() {
               ${img}    
 
 
-# (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
-isohybrid ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
+  # (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
+  isohybrid ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
 
 
-# Add an MD5 checksum (to allow testing of media).
- implantisomd5 ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
+  # Add an MD5 checksum (to allow testing of media).
+  implantisomd5 ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
 
- #scp AIOS-custom-7-20200731.iso 192.168.20.104:~/Downloads/
+  #scp   192.168.20.104:~/Downloads/
 }
 
 
@@ -103,11 +102,19 @@ function usage() {
 
 
 case ${1} in
+  "create_repo")
+  create_repo
+  ;;
   "geniso")
   geniso
   ;;
   "genimg")
   genimg
+  ;;
+  "all")
+  create_repo
+  genimg
+  geniso
   ;;
   "")
   genimg
