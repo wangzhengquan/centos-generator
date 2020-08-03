@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-BuildID="$(date +%Y%m%d)"
+#BuildID="$(date +%Y%m%d)"
 ProduceName=AIOS
 ReleaseID=7
 DVD=/data/centos_tree
@@ -57,22 +57,25 @@ function genimg() {
   fi
 
 
-  mkdir -p ${img}/{Packages,repodata}
+ 
 
-  cp -a ${DVD}/Packages/* ${img}/Packages
-  rm -rf ${img}/Packages/*.i686.rpm
-  rm -rf  ${img}/images/boot.iso
-  cd ${img}/ && createrepo -g ../config/comps.xml . && cd ../
+ 
 
-  chown -R $LOGNAME ${img}
-  chmod -R +w       ${img}
+  # chown -R $LOGNAME ${img}
+  # chmod -R +w       ${img}
 }
 
 
 
 function geniso() {
-  # rm -rf ${img}/Packages/*
-  # cp -a /data/centos/Packages/*  ${img}/Packages
+  
+  # rm -rf ${img}/Packages
+  # mkdir -p ${img}/{Packages,repodata}
+  # cp -a ${DVD}/Packages/* ${img}/Packages
+  # rm -rf ${img}/Packages/*.i686.rpm
+  # rm -rf  ${img}/images/boot.iso
+
+  cd ${img}/ && createrepo -g ../config/custome_comps.xml . && cd ../
 
   rm -rf *.iso
   # Create the new ISO file.
@@ -81,18 +84,18 @@ function geniso() {
               -c isolinux/boot.cat    -b isolinux/isolinux.bin                 \
               -no-emul-boot -boot-load-size 4 -boot-info-table                 \
               -eltorito-alt-boot -e images/efiboot.img -no-emul-boot           \
-              -o ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso \
+              -o ./${ProduceName}-${ReleaseID}.iso \
               ${img}    
 
 
   # (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
-  isohybrid ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
+  isohybrid ./${ProduceName}-${ReleaseID}.iso
 
 
   # Add an MD5 checksum (to allow testing of media).
-  implantisomd5 ./${ProduceName}-custom-${ReleaseID}-${BuildID}.iso
+  implantisomd5 ./${ProduceName}-${ReleaseID}iso
 
-  #scp   192.168.20.104:~/Downloads/
+  scp  ./${ProduceName}-${ReleaseID}.iso 192.168.20.104:~/Downloads/
 }
 
 

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE comps PUBLIC "-//CentOS//DTD Comps info//EN" "comps.dtd">
+<comps>
+	<group>
+    <id>base</id>
+    <name>Base</name>
+    <description>The basic installation of CentOS Linux.</description>
+    <default>false</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">acl</packagereq>
+      <packagereq type="mandatory">at</packagereq>
+      <packagereq type="mandatory">attr</packagereq>
+      <packagereq type="mandatory">bc</packagereq>
+      <packagereq type="mandatory">bind-utils</packagereq>
+      <packagereq type="mandatory">centos-indexhtml</packagereq>
+      <packagereq type="mandatory">cpio</packagereq>
+      <packagereq type="mandatory">crda</packagereq>
+      <packagereq type="mandatory">crontabs</packagereq>
+      <packagereq type="mandatory">cyrus-sasl-plain</packagereq>
+      <packagereq type="mandatory">dbus</packagereq>
+      <packagereq type="mandatory">ed</packagereq>
+      <packagereq type="mandatory">file</packagereq>
+      <packagereq type="mandatory">logrotate</packagereq>
+      <packagereq type="mandatory">lsof</packagereq>
+      <packagereq type="mandatory">man-db</packagereq>
+      <packagereq type="mandatory">net-tools</packagereq>
+      <packagereq type="mandatory">ntsysv</packagereq>
+      <packagereq type="mandatory">pciutils</packagereq>
+      <packagereq type="mandatory">psacct</packagereq>
+      <packagereq type="mandatory">quota</packagereq>
+      <packagereq type="mandatory">setserial</packagereq>
+      <packagereq type="mandatory">traceroute</packagereq>
+      <packagereq type="mandatory">usb_modeswitch</packagereq>
+      <packagereq type="conditional" requires="ruby">rubygem-abrt</packagereq>
+      <packagereq type="default">abrt-addon-ccpp</packagereq>
+      <packagereq type="default">abrt-addon-python</packagereq>
+      <packagereq type="default">abrt-cli</packagereq>
+      <packagereq type="default">abrt-console-notification</packagereq>
+      <packagereq type="default">bash-completion</packagereq>
+      <packagereq type="default">blktrace</packagereq>
+      <packagereq type="default">bpftool</packagereq>
+      <packagereq type="default">bridge-utils</packagereq>
+      <packagereq type="default">bzip2</packagereq>
+      <packagereq type="default">chrony</packagereq>
+      <packagereq type="default">cryptsetup</packagereq>
+      <packagereq type="default">dmraid</packagereq>
+      <packagereq type="default">dosfstools</packagereq>
+      <packagereq type="default">ethtool</packagereq>
+      <packagereq type="default">fprintd-pam</packagereq>
+      <packagereq type="default">gnupg2</packagereq>
+      <packagereq type="default">hunspell</packagereq>
+      <packagereq type="default">hunspell-en</packagereq>
+      <packagereq type="default">kmod-kvdo</packagereq>
+      <packagereq type="default">kpatch</packagereq>
+      <packagereq type="default">ledmon</packagereq>
+      <packagereq type="default">libaio</packagereq>
+      <packagereq type="default">libreport-plugin-mailx</packagereq>
+      <packagereq type="default">libstoragemgmt</packagereq>
+      <packagereq type="default">lvm2</packagereq>
+      <packagereq type="default">man-pages</packagereq>
+      <packagereq type="default">man-pages-overrides</packagereq>
+      <packagereq type="default">mdadm</packagereq>
+      <packagereq type="default">mlocate</packagereq>
+      <packagereq type="default">mtr</packagereq>
+      <packagereq type="default">nano</packagereq>
+      <packagereq type="default">ntpdate</packagereq>
+      <packagereq type="default">pinfo</packagereq>
+      <packagereq type="default">plymouth</packagereq>
+      <packagereq type="default">pm-utils</packagereq>
+      <packagereq type="default">rdate</packagereq>
+      <packagereq type="default">rfkill</packagereq>
+      <packagereq type="default">rng-tools</packagereq>
+      <packagereq type="default">rsync</packagereq>
+      <packagereq type="default">scl-utils</packagereq>
+      <packagereq type="default">setuptool</packagereq>
+      <packagereq type="default">smartmontools</packagereq>
+      <packagereq type="default">sos</packagereq>
+      <packagereq type="default">sssd-client</packagereq>
+      <packagereq type="default">strace</packagereq>
+      <packagereq type="default">sysstat</packagereq>
+      <packagereq type="default">systemtap-runtime</packagereq>
+      <packagereq type="default">tcpdump</packagereq>
+      <packagereq type="default">tcsh</packagereq>
+      <packagereq type="default">teamd</packagereq>
+      <packagereq type="default">time</packagereq>
+      <packagereq type="default">unzip</packagereq>
+      <packagereq type="default">usbutils</packagereq>
+      <packagereq type="default">vdo</packagereq>
+      <packagereq type="default">vim-enhanced</packagereq>
+      <packagereq type="default">virt-what</packagereq>
+      <packagereq type="default">wget</packagereq>
+      <packagereq type="default">which</packagereq>
+      <packagereq type="default">words</packagereq>
+      <packagereq type="default">xfsdump</packagereq>
+      <packagereq type="default">xz</packagereq>
+      <packagereq type="default">yum-langpacks</packagereq>
+      <packagereq type="default">yum-utils</packagereq>
+      <packagereq type="default">zip</packagereq>
+      <packagereq type="optional">acpid</packagereq>
+      <packagereq type="optional">audispd-plugins</packagereq>
+      <packagereq type="optional">augeas</packagereq>
+      <packagereq type="optional">bcc</packagereq>
+      <packagereq type="optional">brltty</packagereq>
+      <packagereq type="optional">ceph-common</packagereq>
+      <packagereq type="optional">cryptsetup-reencrypt</packagereq>
+      <packagereq type="optional">daxio</packagereq>
+      <packagereq type="optional">device-mapper-persistent-data</packagereq>
+      <packagereq type="optional">dos2unix</packagereq>
+      <packagereq type="optional">dumpet</packagereq>
+      <packagereq type="optional">fwupd</packagereq>
+      <packagereq type="optional">fwupdate</packagereq>
+      <packagereq type="optional">genisoimage</packagereq>
+      <packagereq type="optional">gpm</packagereq>
+      <packagereq type="optional">i2c-tools</packagereq>
+      <packagereq type="optional">ima-evm-utils</packagereq>
+      <packagereq type="optional">insights-client</packagereq>
+      <packagereq type="optional">kabi-yum-plugins</packagereq>
+      <packagereq type="optional">libatomic</packagereq>
+      <packagereq type="optional">libcgroup</packagereq>
+      <packagereq type="optional">libcgroup-tools</packagereq>
+      <packagereq type="optional">libitm</packagereq>
+      <packagereq type="optional">libstoragemgmt-arcconf-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-hpsa-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-local-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-megaraid-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-nfs-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-nfs-plugin-clibs</packagereq>
+      <packagereq type="optional">libstoragemgmt-nstor-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-smis-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-targetd-plugin</packagereq>
+      <packagereq type="optional">libstoragemgmt-udev</packagereq>
+      <packagereq type="optional">linuxptp</packagereq>
+      <packagereq type="optional">logwatch</packagereq>
+      <packagereq type="optional">mkbootdisk</packagereq>
+      <packagereq type="optional">mtools</packagereq>
+      <packagereq type="optional">ncurses-term</packagereq>
+      <packagereq type="optional">ntp</packagereq>
+      <packagereq type="optional">nvme-cli</packagereq>
+      <packagereq type="optional">nvmetcli</packagereq>
+      <packagereq type="optional">oddjob</packagereq>
+      <packagereq type="optional">pax</packagereq>
+      <packagereq type="optional">perl-gettext</packagereq>
+      <packagereq type="optional">prelink</packagereq>
+      <packagereq type="optional">PyPAM</packagereq>
+      <packagereq type="optional">python-subprocess32</packagereq>
+      <packagereq type="optional">python-volume_key</packagereq>
+      <packagereq type="optional">redhat-lsb-core</packagereq>
+      <packagereq type="optional">redhat-upgrade-dracut</packagereq>
+      <packagereq type="optional">redhat-upgrade-tool</packagereq>
+      <packagereq type="optional">rsyslog-gnutls</packagereq>
+      <packagereq type="optional">rsyslog-gssapi</packagereq>
+      <packagereq type="optional">rsyslog-kafka</packagereq>
+      <packagereq type="optional">rsyslog-relp</packagereq>
+      <packagereq type="optional">sgpio</packagereq>
+      <packagereq type="optional">sos-collector</packagereq>
+      <packagereq type="optional">sox</packagereq>
+      <packagereq type="optional">squashfs-tools</packagereq>
+      <packagereq type="optional">star</packagereq>
+      <packagereq type="optional">tmpwatch</packagereq>
+      <packagereq type="optional">udftools</packagereq>
+      <packagereq type="optional">usbguard</packagereq>
+      <packagereq type="optional">uuidd</packagereq>
+      <packagereq type="optional">volume_key</packagereq>
+      <packagereq type="optional">wodim</packagereq>
+      <packagereq type="optional">x86info</packagereq>
+      <packagereq type="optional">yum-plugin-aliases</packagereq>
+      <packagereq type="optional">yum-plugin-changelog</packagereq>
+      <packagereq type="optional">yum-plugin-tmprepo</packagereq>
+      <packagereq type="optional">yum-plugin-verify</packagereq>
+      <packagereq type="optional">yum-plugin-versionlock</packagereq>
+      <packagereq type="optional">zsh</packagereq>
+    </packagelist>
+  </group>
+
+
+  <group>
+    <id>core</id>
+    <name>Core</name>
+    <description>Smallest possible installation.</description>
+    <default>false</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">audit</packagereq>
+      <packagereq type="mandatory">basesystem</packagereq>
+      <packagereq type="mandatory">bash</packagereq>
+      <packagereq type="mandatory">btrfs-progs</packagereq>
+      <packagereq type="mandatory">coreutils</packagereq>
+      <packagereq type="mandatory">cronie</packagereq>
+      <packagereq type="mandatory">curl</packagereq>
+      <packagereq type="mandatory">dhclient</packagereq>
+      <packagereq type="mandatory">e2fsprogs</packagereq>
+      <packagereq type="mandatory">filesystem</packagereq>
+      <packagereq type="mandatory">firewalld</packagereq>
+      <packagereq type="mandatory">glibc</packagereq>
+      <packagereq type="mandatory">hostname</packagereq>
+      <packagereq type="mandatory">initscripts</packagereq>
+      <packagereq type="mandatory">iproute</packagereq>
+      <packagereq type="mandatory">iprutils</packagereq>
+      <packagereq type="mandatory">iptables</packagereq>
+      <packagereq type="mandatory">iputils</packagereq>
+      <packagereq type="mandatory">irqbalance</packagereq>
+      <packagereq type="mandatory">kbd</packagereq>
+      <packagereq type="mandatory">kexec-tools</packagereq>
+      <packagereq type="mandatory">less</packagereq>
+      <packagereq type="mandatory">man-db</packagereq>
+      <packagereq type="mandatory">ncurses</packagereq>
+      <packagereq type="mandatory">openssh-clients</packagereq>
+      <packagereq type="mandatory">openssh-server</packagereq>
+      <packagereq type="mandatory">parted</packagereq>
+      <packagereq type="mandatory">passwd</packagereq>
+      <packagereq type="mandatory">plymouth</packagereq>
+      <packagereq type="mandatory">policycoreutils</packagereq>
+      <packagereq type="mandatory">procps-ng</packagereq>
+      <packagereq type="mandatory">rootfiles</packagereq>
+      <packagereq type="mandatory">rpm</packagereq>
+      <packagereq type="mandatory">rsyslog</packagereq>
+      <packagereq type="mandatory">selinux-policy-targeted</packagereq>
+      <packagereq type="mandatory">setup</packagereq>
+      <packagereq type="mandatory">shadow-utils</packagereq>
+      <packagereq type="mandatory">sudo</packagereq>
+      <packagereq type="mandatory">systemd</packagereq>
+      <packagereq type="mandatory">tar</packagereq>
+      <packagereq type="mandatory">tuned</packagereq>
+      <packagereq type="mandatory">util-linux</packagereq>
+      <packagereq type="mandatory">vim-minimal</packagereq>
+      <packagereq type="mandatory">xfsprogs</packagereq>
+      <packagereq type="mandatory">yum</packagereq>
+      <packagereq type="default">aic94xx-firmware</packagereq>
+      <packagereq type="default">alsa-firmware</packagereq>
+      <packagereq type="default">biosdevname</packagereq>
+      <packagereq type="default">dracut-config-rescue</packagereq>
+      <packagereq type="default">ivtv-firmware</packagereq>
+      <packagereq type="default">iwl100-firmware</packagereq>
+      <packagereq type="default">iwl1000-firmware</packagereq>
+      <packagereq type="default">iwl105-firmware</packagereq>
+      <packagereq type="default">iwl135-firmware</packagereq>
+      <packagereq type="default">iwl2000-firmware</packagereq>
+      <packagereq type="default">iwl2030-firmware</packagereq>
+      <packagereq type="default">iwl3160-firmware</packagereq>
+      <packagereq type="default">iwl3945-firmware</packagereq>
+      <packagereq type="default">iwl4965-firmware</packagereq>
+      <packagereq type="default">iwl5000-firmware</packagereq>
+      <packagereq type="default">iwl5150-firmware</packagereq>
+      <packagereq type="default">iwl6000-firmware</packagereq>
+      <packagereq type="default">iwl6000g2a-firmware</packagereq>
+      <packagereq type="default">iwl6000g2b-firmware</packagereq>
+      <packagereq type="default">iwl6050-firmware</packagereq>
+      <packagereq type="default">iwl7260-firmware</packagereq>
+      <packagereq type="default">kernel-tools</packagereq>
+      <packagereq type="default">libsysfs</packagereq>
+      <packagereq type="default">linux-firmware</packagereq>
+      <packagereq type="default">lshw</packagereq>
+      <packagereq type="default">microcode_ctl</packagereq>
+      <packagereq type="default">NetworkManager</packagereq>
+      <packagereq type="default">NetworkManager-team</packagereq>
+      <packagereq type="default">NetworkManager-tui</packagereq>
+      <packagereq type="default">postfix</packagereq>
+      <packagereq type="default">sg3_utils</packagereq>
+      <packagereq type="default">sg3_utils-libs</packagereq>
+      <packagereq type="optional">dracut-config-generic</packagereq>
+      <packagereq type="optional">dracut-fips</packagereq>
+      <packagereq type="optional">dracut-fips-aesni</packagereq>
+      <packagereq type="optional">dracut-network</packagereq>
+      <packagereq type="optional">initial-setup</packagereq>
+      <packagereq type="optional">openssh-keycat</packagereq>
+      <packagereq type="optional">rdma-core</packagereq>
+      <packagereq type="optional">selinux-policy-mls</packagereq>
+      <packagereq type="optional">tboot</packagereq>
+    </packagelist>
+  </group>
+
+
+
+  <group>
+    <id>debugging</id>
+    <name>Debugging Tools</name>
+    <description>Tools for debugging misbehaving applications and diagnosing performance problems.</description>
+    <default>false</default>
+    <uservisible>false</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">gdb</packagereq>
+      <packagereq type="mandatory">kexec-tools</packagereq>
+      <packagereq type="mandatory">latrace</packagereq>
+      <packagereq type="mandatory">libreport-cli</packagereq>
+      <packagereq type="mandatory">strace</packagereq>
+      <packagereq type="mandatory">systemtap-runtime</packagereq>
+      <packagereq type="default">abrt-addon-ccpp</packagereq>
+      <packagereq type="default">abrt-addon-python</packagereq>
+      <packagereq type="default">abrt-cli</packagereq>
+      <packagereq type="default">crash</packagereq>
+      <packagereq type="default">crash-gcore-command</packagereq>
+      <packagereq type="default">crash-ptdump-command</packagereq>
+      <packagereq type="default">crash-trace-command</packagereq>
+      <packagereq type="default">elfutils</packagereq>
+      <packagereq type="default">kernel-tools</packagereq>
+      <packagereq type="default">libreport-plugin-mailx</packagereq>
+      <packagereq type="default">ltrace</packagereq>
+      <packagereq type="default">memstomp</packagereq>
+      <packagereq type="default">ps_mem</packagereq>
+      <packagereq type="default">trace-cmd</packagereq>
+      <packagereq type="default">valgrind</packagereq>
+      <packagereq type="optional">abrt-java-connector</packagereq>
+      <packagereq type="optional">gdb-gdbserver</packagereq>
+      <packagereq type="optional">glibc-utils</packagereq>
+      <packagereq type="optional">memtest86+</packagereq>
+      <packagereq type="optional">systemtap-client</packagereq>
+      <packagereq type="optional">systemtap-initscript</packagereq>
+    </packagelist>
+  </group>
+
+
+   <group>
+    <id>development</id>
+    <name>Development Tools</name>
+    <description>A basic development environment.</description>
+    <default>false</default>
+    <uservisible>true</uservisible>
+    <packagelist>
+      <packagereq type="mandatory">autoconf</packagereq>
+      <packagereq type="mandatory">automake</packagereq>
+      <packagereq type="mandatory">binutils</packagereq>
+      <packagereq type="mandatory">bison</packagereq>
+      <packagereq type="mandatory">flex</packagereq>
+      <packagereq type="mandatory">gcc</packagereq>
+      <packagereq type="mandatory">gcc-c++</packagereq>
+      <packagereq type="mandatory">gettext</packagereq>
+      <packagereq type="mandatory">libtool</packagereq>
+      <packagereq type="mandatory">make</packagereq>
+      <packagereq type="mandatory">patch</packagereq>
+      <packagereq type="mandatory">pkgconfig</packagereq>
+      <packagereq type="mandatory">redhat-rpm-config</packagereq>
+      <packagereq type="mandatory">rpm-build</packagereq>
+      <packagereq type="mandatory">rpm-sign</packagereq>
+      <packagereq type="default">byacc</packagereq>
+      <packagereq type="default">cscope</packagereq>
+      <packagereq type="default">ctags</packagereq>
+      <packagereq type="default">diffstat</packagereq>
+      <packagereq type="default">doxygen</packagereq>
+      <packagereq type="default">elfutils</packagereq>
+      <packagereq type="default">gcc-gfortran</packagereq>
+      <packagereq type="default">git</packagereq>
+      <packagereq type="default">indent</packagereq>
+      <packagereq type="default">intltool</packagereq>
+      <packagereq type="default">patchutils</packagereq>
+      <packagereq type="default">rcs</packagereq>
+      <packagereq type="default">subversion</packagereq>
+      <packagereq type="default">swig</packagereq>
+      <packagereq type="default">systemtap</packagereq>
+      <packagereq type="optional">ant</packagereq>
+      <packagereq type="optional">babel</packagereq>
+      <packagereq type="optional">bzr</packagereq>
+      <packagereq type="optional">chrpath</packagereq>
+      <packagereq type="optional">cmake</packagereq>
+      <packagereq type="optional">compat-gcc-44</packagereq>
+      <packagereq type="optional">compat-gcc-44-c++</packagereq>
+      <packagereq type="optional">cvs</packagereq>
+      <packagereq type="optional">dejagnu</packagereq>
+      <packagereq type="optional">ElectricFence</packagereq>
+      <packagereq type="optional">expect</packagereq>
+      <packagereq type="optional">gcc-gnat</packagereq>
+      <packagereq type="optional">gcc-objc</packagereq>
+      <packagereq type="optional">gcc-objc++</packagereq>
+      <packagereq type="optional">imake</packagereq>
+      <packagereq type="optional">javapackages-tools</packagereq>
+      <packagereq type="optional">ksc</packagereq>
+      <packagereq type="optional">mercurial</packagereq>
+      <packagereq type="optional">mod_dav_svn</packagereq>
+      <packagereq type="optional">nasm</packagereq>
+      <packagereq type="optional">perltidy</packagereq>
+      <packagereq type="optional">rpmdevtools</packagereq>
+      <packagereq type="optional">rpmlint</packagereq>
+      <packagereq type="optional">systemtap-sdt-devel</packagereq>
+      <packagereq type="optional">systemtap-server</packagereq>
+    </packagelist>
+  </group>
+
+  <environment>
+    <id>My Environment</id>
+    <name>My Environment</name>
+   
+    <display_order>1</display_order>
+    <grouplist>
+      <groupid>core</groupid>
+      <groupid>base</groupid>
+    </grouplist>
+    <optionlist>
+      <groupid>development</groupid>
+      <groupid>debugging</groupid>
+    </optionlist>
+  </environment>
+
+  <langpacks>
+    <match install="autocorr-%s" name="autocorr-en"/>
+    <match install="firefox-langpack-%s" name="firefox"/>
+    <match install="gimp-help-%s" name="gimp-help"/>
+    <match install="gnome-getting-started-docs-%s" name="gnome-getting-started-docs"/>
+    <match install="hunspell-%s" name="hunspell"/>
+    <match install="hyphen-%s" name="hyphen"/>
+    <match install="kde-l10n-%s" name="kdelibs"/>
+    <match install="libreoffice-langpack-%s" name="libreoffice-core"/>
+    <match install="man-pages-%s" name="man-pages"/>
+    <match install="mythes-%s" name="mythes"/>
+  </langpacks>
+</comps>
