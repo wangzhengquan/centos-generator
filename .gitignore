@@ -1,6 +1,7 @@
 centos_tree/
 iso-tmp/
 img/
+img2/
 tmpb/
 *.log
 *.iso

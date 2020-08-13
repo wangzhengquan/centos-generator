@@ -3,8 +3,8 @@
 
 #BuildID="$(date +%Y%m%d)"
 ProduceName=AIOS
-ReleaseID=7
-DVD=/data/centos_tree
+ReleaseID=8
+DVD=/home/wzq/CentosDVD2/AppStream/
 mirror=file://${DVD}
 img=./img
 # mirror=http://mirror.centos.org/centos-7/7/os/x86_64/
@@ -24,9 +24,10 @@ function do_clean
 }
 
 
-function create_repo() {
-  # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
-  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
+function create_repo1() {
+  test  -d ${DVD} || mkdir ${DVD}
+  sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
+  #sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
 
   chmod -R +rwX ${DVD}/repodata
   chmod +rwX ${DVD} ; # createrepo demand
@@ -40,15 +41,27 @@ function create_repo() {
 }
 
 
+function create_repo() {
+  test  -d ${DVD} || mkdir ${DVD}
+  #sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
+  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
+
+  chmod -R +rwX ${DVD}/repodata
+  chmod +rwX ${DVD} ; # createrepo demand
+  test -f ./comps8.xml || exit 1; \
+  rm ${DVD}/repodata/*.bz2 ${DVD}/repodata/*.gz; \
+  cp ./comps8.xml ${DVD}/repodata/comps.xml; \
+  createrepo -v -g repodata/comps.xml ${DVD}
+}
+
+
 function genimg() {
 
   do_clean
 
-  if sestatus |grep -E "Current mode:.*enforcing";then
   setenforce 0
-  fi
-
-  sudo lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID} --volid="${ProduceName}"  --isfinal \
+  /home/wzq/wk/lorax/src/sbin/lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID}  --nomacboot  --volid="${ProduceName}"  --isfinal \
+  -s file:///home/wzq/CentosDVD2/BaseOS/ \
   -s ${mirror} \
   ${img}
 
@@ -56,13 +69,9 @@ function genimg() {
     exit -1
   fi
 
-
- 
-
- 
-
-  # chown -R $LOGNAME ${img}
-  # chmod -R +w       ${img}
+  chown -R $LOGNAME ${img}
+  chmod -R +w       ${img}
+  echo "genimg success!"
 }
 
 
@@ -73,11 +82,11 @@ function geniso() {
   # mkdir -p ${img}/{Packages,repodata}
   # cp -a ${DVD}/Packages/* ${img}/Packages
   # rm -rf ${img}/Packages/*.i686.rpm
-  # rm -rf  ${img}/images/boot.iso
+  rm -rf  ${img}/images/boot.iso
 
-  cd ${img}/ && createrepo -g ../config/custome_comps.xml . && cd ../
+  # cd ${img}/ && createrepo -g ../config/custome_comps.xml . && cd ../
 
-  rm -rf *.iso
+  # rm -rf *.iso
   # Create the new ISO file.
   genisoimage -U -r -v -T -J -joliet-long                                      \
               -V ${ProduceName} -A ${ProduceName} -volset ${ProduceName}       \
@@ -95,7 +104,8 @@ function geniso() {
   # Add an MD5 checksum (to allow testing of media).
   implantisomd5 ./${ProduceName}-${ReleaseID}iso
 
-  scp  ./${ProduceName}-${ReleaseID}.iso 192.168.20.104:~/Downloads/
+  # scp  ./${ProduceName}-${ReleaseID}.iso 192.168.20.104:~/Downloads/
+  echo "geniso success!"
 }
 
 
@@ -105,7 +115,7 @@ function usage() {
 
 
 case ${1} in
-  "create_repo")
+  "genrepo")
   create_repo
   ;;
   "geniso")
