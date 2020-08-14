@@ -1,5 +1,5 @@
-sudo python3 -m pip install pytest-cov rpmfluff  magic ansible-runner pycdlib
+sudo  pip3 install pytest-cov rpmfluff   ansible-runner pycdlib semantic_version
 
-sudo yum install python3-devel python3-gobject gtk3 libgit2-glib libgit2
+sudo dnf install -y python3-devel python3-gobject gtk3 libgit2-glib libgit2
 
  
