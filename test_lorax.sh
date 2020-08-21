@@ -1,7 +1,10 @@
 OUTPUTDIR=`pwd`/img
 LORAXBASE=/home/wzq/wk/lorax
 export PYTHONPATH=${PYTHONPATH}:${LORAXBASE}/src/
+export PATH=${LORAXBASE}/src/sbin:${LORAXBASE}/src/bin:${PATH}
+
 echo "PYTHONPATH=${PYTHONPATH}"
+echo "PATH=${PATH}"
 
 rm -rvf ${OUTPUTDIR}
 rm -f   `pwd`/*.log
