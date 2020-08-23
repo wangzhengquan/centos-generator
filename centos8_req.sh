@@ -8,13 +8,17 @@ sudo pip3 install nose pytest-cov rpmfluff   ansible-runner pycdlib semantic_ver
 
 # fro anaconda
 sudo dnf install -y lorax-lmc-virt libguestfs-tools python3-libvirt virt-install  \
- 	glib2 glib2-devel audit-libs-devel rpm-devel
+ 	glib2 glib2-devel audit-libs-devel rpm-devel python3-nose
 
 #  install "parallel" from source code 
 
 
 dnf --enablerepo=PowerTools install -y glade-devel libxklavier-devel gobject-introspection-devel \
 	libarchive-devel libarchive-devel gtk-doc
+
+
+
+sudo dnf --enablerepo=PowerTools install -y glib2-doc libgnomekbd-devel libsoup-devel json-glib-devel
 
 
  
