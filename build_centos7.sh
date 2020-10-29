@@ -7,9 +7,11 @@ ReleaseID=7
 DVD=/data/centos_tree
 REPO=file://${DVD}
 # REPO=http://192.168.20.104
+# REPO=http://mirror.centos.org/centos-7/7/os/x86_64/
 dest=./build
-# REPO=http://REPO.centos.org/centos-7/7/os/x86_64/
+
 export LC_ALL=C
+
 function do_clean
 {
   #yum clean all && yum update
@@ -25,7 +27,7 @@ function do_clean
 }
 
 
-function create_repo() {
+function create_repo2() {
   # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
   sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
 
@@ -40,8 +42,30 @@ function create_repo() {
   createrepo -v -g repodata/comps.xml ${DVD}
 }
 
+# Download conda anaconda-core anaconda-dracut and rebuild repo
+# this method need only run one time.
+function create_repo() {
+  # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
+  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
 
-function genimg() {
+  chmod -R +rwX ${DVD}/repodata
+  chmod +rwX ${DVD}  # createrepo demand
+  compsxml=`find ${DVD}/repodata -name '*-x86_64-comps*.xml'`
+  if test -z compsxml; then
+    echo "create_repo failed. could not find x86_64-comps.xml"
+    exit -1
+  fi
+  
+  rm ${DVD}/repodata/*.bz2 ${DVD}/repodata/*.gz
+  tmp_xml=`mktemp`; \
+  cat ${compsxml} > ${tmp_xml}; \
+  createrepo -v -g ${tmp_xml} ${DVD}
+
+  echo "create repo success."
+}
+
+
+function build() {
 
   do_clean
 
@@ -72,7 +96,7 @@ function geniso() {
   # rm -rf ${dest}/Packages/*.i686.rpm
   # rm -rf  ${dest}/images/boot.iso
  mkdir -p ${dest}/{Packages,repodata}
- cd ${dest}/ && createrepo -g ../config/custome_comps.xml . && cd ../
+ cd ${dest}/ && createrepo -g ../config/comps_centos7_origin.xml . && cd ../
 
   rm -rf *.iso
   # Create the new ISO file.
@@ -90,14 +114,14 @@ function geniso() {
 
 
   # Add an MD5 checksum (to allow testing of media).
-  implantisomd5 ./${ProduceName}-${ReleaseID}iso
+  implantisomd5 ./${ProduceName}-${ReleaseID}.iso
 
   scp  ./${ProduceName}-${ReleaseID}.iso wzq@192.168.20.104:~/Downloads/
 }
 
 
 function usage() {
-  echo "Usage: ${0} [geniso | genimg]"
+  echo "Usage: ${0} [create_repo | geniso | build | all]"
 }
 
 
@@ -108,16 +132,16 @@ case ${1} in
   "geniso")
   geniso
   ;;
-  "genimg")
-  genimg
+  "build")
+  build
   ;;
   "all")
   create_repo
-  genimg
+  build
   geniso
   ;;
   "")
-  genimg
+  build
   geniso
   ;;
   *)
