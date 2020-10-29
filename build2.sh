@@ -54,6 +54,26 @@ function create_repo() {
   createrepo -v -g repodata/comps.xml ${DVD}
 }
 
+function genimg_tmp() {
+
+  rm -rvf ${img}
+  rm -f   ./*.log
+  rm -rf /var/tmp/lorax.*
+
+  setenforce 0
+  /home/wzq/wk/lorax/src/sbin/lorax -p "AIOS" -v 8 -r 8  --nomacboot  --volid="AIOS"  --isfinal \
+  -s file:///home/wzq/CentosDVD2/BaseOS/ \
+  -s /home/wzq/CentosDVD2/AppStream/ \
+  ${img}
+
+  if [ $? != 0 ];then
+    exit -1
+  fi
+
+  chown -R $LOGNAME ${img}
+  chmod -R +w       ${img}
+  echo "genimg success!"
+}
 
 function genimg() {
 
