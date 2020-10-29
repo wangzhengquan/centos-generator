@@ -5,15 +5,15 @@
 ProduceName=AIOS
 ReleaseID=7
 DVD=/data/centos_tree
-mirror=file://${DVD}
-# mirror=http://192.168.20.104
-img=./img
-# mirror=http://mirror.centos.org/centos-7/7/os/x86_64/
+REPO=file://${DVD}
+# REPO=http://192.168.20.104
+dest=./build
+# REPO=http://REPO.centos.org/centos-7/7/os/x86_64/
 export LC_ALL=C
 function do_clean
 {
   #yum clean all && yum update
-  rm -rvf ${img}
+  rm -rvf ${dest}
   rm -f   ./*.log
   rm -rf /var/tmp/lorax.*
   # for i in `ls /dev/loop[0-9]*`
@@ -45,34 +45,34 @@ function genimg() {
 
   do_clean
 
-  if sestatus |grep -E "Current mode:.*enforcing";then
-  setenforce 0
+  if sestatus | grep -E "Current mode:.*enforcing";then
+    setenforce 0
   fi
 
-  /home/wzq/wk/lorax/src/sbin/lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID} --volid="${ProduceName}"  --isfinal \
-  -s ${mirror} \
-  ${img}
+  sudo lorax -p "${ProduceName}" -v ${ReleaseID} -r ${ReleaseID} --volid="${ProduceName}"  --isfinal \
+  -s ${REPO} ${dest}
 
   if [ $? != 0 ];then
+    echo 'builed failed.'
     exit -1
   fi
 
-
-  # chown -R $LOGNAME ${img}
-  # chmod -R +w       ${img}
+  echo 'builed success.'
+  # chown -R $LOGNAME ${dest}
+  # chmod -R +w       ${dest}
 }
 
 
 
 function geniso() {
   
-  # rm -rf ${img}/Packages
-  # mkdir -p ${img}/{Packages,repodata}
-  # cp -a ${DVD}/Packages/* ${img}/Packages
-  # rm -rf ${img}/Packages/*.i686.rpm
-  # rm -rf  ${img}/images/boot.iso
- mkdir -p ${img}/{Packages,repodata}
- cd ${img}/ && createrepo -g ../config/custome_comps.xml . && cd ../
+  # rm -rf ${dest}/Packages
+  # mkdir -p ${dest}/{Packages,repodata}
+  # cp -a ${DVD}/Packages/* ${dest}/Packages
+  # rm -rf ${dest}/Packages/*.i686.rpm
+  # rm -rf  ${dest}/images/boot.iso
+ mkdir -p ${dest}/{Packages,repodata}
+ cd ${dest}/ && createrepo -g ../config/custome_comps.xml . && cd ../
 
   rm -rf *.iso
   # Create the new ISO file.
@@ -82,7 +82,7 @@ function geniso() {
               -no-emul-boot -boot-load-size 4 -boot-info-table                 \
               -eltorito-alt-boot -e images/efiboot.img -no-emul-boot           \
               -o ./${ProduceName}-${ReleaseID}.iso \
-              ${img}    
+              ${dest}    
 
 
   # (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
