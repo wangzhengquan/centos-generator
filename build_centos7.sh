@@ -26,27 +26,11 @@ function do_clean
 
 }
 
-
-function create_repo2() {
-  # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
-  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
-
-  chmod -R +rwX ${DVD}/repodata
-  chmod +rwX ${DVD} ; # createrepo demand
-  compsxml=`cd ${DVD}; find repodata -name '*-x86_64-comps*.xml'`; \
-  rm -f ./comps.xml; \
-  cp ${DVD}/${compsxml} ./comps.xml; \
-  test -f ./comps.xml || exit 1; \
-  rm ${DVD}/repodata/*.bz2 ${DVD}/repodata/*.gz; \
-  cp ./comps.xml ${DVD}/repodata/comps.xml; \
-  createrepo -v -g repodata/comps.xml ${DVD}
-}
-
 # Download conda anaconda-core anaconda-dracut and rebuild repo
 # this method need only run one time.
 function create_repo() {
   # sudo yumdownloader `rpm -qa`  --destdir=${DVD}/Packages
-  sudo yumdownloader `cat config/install.list`  --destdir=${DVD}/Packages
+  sudo yumdownloader `cat config/repo_pkg_centos7.list`  --destdir=${DVD}/Packages
 
   chmod -R +rwX ${DVD}/repodata
   chmod +rwX ${DVD}  # createrepo demand
@@ -90,17 +74,18 @@ function build() {
 
 function geniso() {
   
-  # rm -rf ${dest}/Packages
-  # mkdir -p ${dest}/{Packages,repodata}
-  # cp -a ${DVD}/Packages/* ${dest}/Packages
-  # rm -rf ${dest}/Packages/*.i686.rpm
-  # rm -rf  ${dest}/images/boot.iso
- mkdir -p ${dest}/{Packages,repodata}
- cd ${dest}/ && createrepo -g ../config/comps_centos7_origin.xml . && cd ../
+  rm -rf ${dest}/Packages
+  mkdir -p ${dest}/{Packages,repodata}
+  cp -a ${DVD}/Packages/* ${dest}/Packages
+  rm -rf ${dest}/Packages/*.i686.rpm
+  rm -rf  ${dest}/images/boot.iso
+
+  cp config/ks_centos7.cfg  ${dest}/isolinux/ks.cfg
+ # cd ${dest}/ && createrepo -g ../config/comps_centos7_origin.xml . && cd ../
 
   rm -rf *.iso
   # Create the new ISO file.
-  genisoimage -U -r -v -T -J -joliet-long                                      \
+  sudo genisoimage -U -r -v -T -J -joliet-long                                      \
               -V ${ProduceName} -A ${ProduceName} -volset ${ProduceName}       \
               -c isolinux/boot.cat    -b isolinux/isolinux.bin                 \
               -no-emul-boot -boot-load-size 4 -boot-info-table                 \
@@ -108,6 +93,10 @@ function geniso() {
               -o ./${ProduceName}-${ReleaseID}.iso \
               ${dest}    
 
+  if [ $? != 0 ];then
+      echo 'genisoimage failed.'
+      exit -1
+  fi
 
   # (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
   isohybrid ./${ProduceName}-${ReleaseID}.iso
