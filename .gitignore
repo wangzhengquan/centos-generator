@@ -1,4 +1,6 @@
 centos_tree/
+tmp/
+build/
 iso-tmp/
 img/
 img2/
