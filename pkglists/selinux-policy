@@ -1,0 +1,9 @@
+/etc/selinux
+/etc/selinux/config
+/etc/sysconfig/selinux
+/usr/lib/rpm/macros.d/macros.selinux-policy
+/usr/lib/tmpfiles.d/selinux-policy.conf
+/usr/share/licenses/selinux-policy
+/usr/share/licenses/selinux-policy/COPYING
+/usr/share/selinux
+/usr/share/selinux/packages

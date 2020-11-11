@@ -1,0 +1,16 @@
+/usr/lib/.build-id
+/usr/lib/.build-id/42
+/usr/lib/.build-id/42/a35353be8063a4556d9e9d1173dca9626c5102
+/usr/lib/.build-id/f2
+/usr/lib/.build-id/f2/2cf1c1abba422d3314ce5137a75f63f02c0e7b
+/usr/lib/.build-id/f8
+/usr/lib/.build-id/f8/eb16a6f2fa83cb1c290519881de95f7d5ec852
+/usr/lib64/libIntelXvMC.so.1
+/usr/lib64/libIntelXvMC.so.1.0.0
+/usr/lib64/xorg/modules/drivers/intel_drv.so
+/usr/libexec/xf86-video-intel-backlight-helper
+/usr/share/doc/xorg-x11-drv-intel
+/usr/share/doc/xorg-x11-drv-intel/COPYING
+/usr/share/man/man4/intel-virtual-output.4.gz
+/usr/share/man/man4/intel.4.gz
+/usr/share/polkit-1/actions/org.x.xf86-video-intel.backlight-helper.policy

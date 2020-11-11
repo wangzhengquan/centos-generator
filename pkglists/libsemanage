@@ -1,0 +1,13 @@
+/etc/selinux
+/etc/selinux/semanage.conf
+/usr/lib/.build-id
+/usr/lib/.build-id/e7
+/usr/lib/.build-id/e7/856494f06e80c229f564ba008279d4d6c4e459
+/usr/lib64/libsemanage.so.1
+/usr/libexec/selinux
+/usr/share/licenses/libsemanage
+/usr/share/licenses/libsemanage/COPYING
+/usr/share/man/man5/semanage.conf.5.gz
+/usr/share/man/ru/man5/semanage.conf.5.gz
+/var/lib/selinux
+/var/lib/selinux/tmp

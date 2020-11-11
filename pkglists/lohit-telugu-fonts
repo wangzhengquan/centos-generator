@@ -1,0 +1,11 @@
+/etc/fonts/conf.d/65-0-lohit-telugu.conf
+/usr/share/doc/lohit-telugu-fonts
+/usr/share/doc/lohit-telugu-fonts/AUTHORS
+/usr/share/doc/lohit-telugu-fonts/COPYRIGHT
+/usr/share/doc/lohit-telugu-fonts/ChangeLog
+/usr/share/doc/lohit-telugu-fonts/OFL.txt
+/usr/share/doc/lohit-telugu-fonts/README
+/usr/share/fontconfig/conf.avail/65-0-lohit-telugu.conf
+/usr/share/fonts/lohit-telugu
+/usr/share/fonts/lohit-telugu/Lohit-Telugu.ttf
+/usr/share/metainfo/io.pagure.lohit.telugu.font.metainfo.xml

@@ -1,0 +1,10 @@
+/etc/fonts/conf.d/65-0-google-noto-sans-cjk-ttc.conf
+/usr/share/fontconfig/conf.avail/65-0-google-noto-sans-cjk-ttc.conf
+/usr/share/fonts/google-noto-cjk
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Black.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Bold.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-DemiLight.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Light.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Medium.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Regular.ttc
+/usr/share/fonts/google-noto-cjk/NotoSansCJK-Thin.ttc

@@ -30,9 +30,35 @@ function update_repo() {
   rm -f ${tmp_comps_xml}
 }
 
+
+function update_repo() {
+
+   REPO_BASE="/home/wzq/CentosDVD2/AppStream"
+
+  # rpmbuild -bb /home/wzq/wk/anaconda/anaconda.spec
+  # cp /home/wzq/rpmbuild/RPMS/x86_64/anaconda* ${REPO_BASE}/Packages/
+  work_dir=`pwd`
+  tmp_comps_xml=`pwd`/comps-AppStream.x86_64.xml
+  chmod -R  +rwX ${REPO_BASE} ; # createrepo demand
+  # compsxml=`cd ${REPO_BASE}; find repodata -name '*-x86_64-comps*.xml'`; \
+  # compsxml=`cd ${REPO_BASE}; find repodata -name '*comps-AppStream.x86_64.xml'`; \
+  compsxml=`find ${REPO_BASE}/repodata -name '*comps-AppStream.x86_64.xml'`; \
+  cp ${compsxml} ${tmp_comps_xml}; \
+  test -f ${tmp_comps_xml} || exit 1; \
+  rm ${REPO_BASE}/repodata/*.bz2 ${REPO_BASE}/repodata/*.gz ${REPO_BASE}/repodata/*.xz; \
+  cp ${tmp_comps_xml} ${REPO_BASE}/comps-AppStream.x86_64.xml; \
+  cd ${REPO_BASE} && createrepo --xz  -v -g comps-AppStream.x86_64.xml ${REPO_BASE} && cd ${work_dir}
+
+  if [ $? != 0 ];then
+	exit -1
+  fi
+
+  rm -f ${tmp_comps_xml}
+}
+
 function run() {
 
-	OUTPUTDIR=`pwd`/img
+	OUTPUTDIR=`pwd`/build
 	LORAXBASE=/home/wzq/wk/lorax
 	export PYTHONPATH=${PYTHONPATH}:${LORAXBASE}/src/
 	export PATH=${LORAXBASE}/src/sbin:${LORAXBASE}/src/bin:${PATH}

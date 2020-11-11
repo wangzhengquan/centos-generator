@@ -1,0 +1,15 @@
+/etc/dnf/vars/contentdir
+/etc/dnf/vars/infra
+/etc/yum.repos.d/CentOS-AppStream.repo
+/etc/yum.repos.d/CentOS-Base.repo
+/etc/yum.repos.d/CentOS-CR.repo
+/etc/yum.repos.d/CentOS-Debuginfo.repo
+/etc/yum.repos.d/CentOS-Devel.repo
+/etc/yum.repos.d/CentOS-Extras.repo
+/etc/yum.repos.d/CentOS-HA.repo
+/etc/yum.repos.d/CentOS-Media.repo
+/etc/yum.repos.d/CentOS-PowerTools.repo
+/etc/yum.repos.d/CentOS-Sources.repo
+/etc/yum.repos.d/CentOS-Vault.repo
+/etc/yum.repos.d/CentOS-centosplus.repo
+/etc/yum.repos.d/CentOS-fasttrack.repo

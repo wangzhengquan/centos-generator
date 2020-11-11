@@ -1,0 +1,13 @@
+/usr/share/doc/perl-HTTP-Tiny
+/usr/share/doc/perl-HTTP-Tiny/CONTRIBUTING.mkdn
+/usr/share/doc/perl-HTTP-Tiny/Changes
+/usr/share/doc/perl-HTTP-Tiny/README
+/usr/share/doc/perl-HTTP-Tiny/eg
+/usr/share/doc/perl-HTTP-Tiny/eg/get.pl
+/usr/share/doc/perl-HTTP-Tiny/eg/mirror.pl
+/usr/share/doc/perl-HTTP-Tiny/eg/post.pl
+/usr/share/licenses/perl-HTTP-Tiny
+/usr/share/licenses/perl-HTTP-Tiny/LICENSE
+/usr/share/man/man3/HTTP::Tiny.3pm.gz
+/usr/share/perl5/vendor_perl/HTTP
+/usr/share/perl5/vendor_perl/HTTP/Tiny.pm

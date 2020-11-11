@@ -1,0 +1,14 @@
+/etc/depmod.d/kvdo.conf
+/lib/modules/4.18.0-187.el8.x86_64
+/lib/modules/4.18.0-187.el8.x86_64/extra
+/lib/modules/4.18.0-187.el8.x86_64/extra/kmod-kvdo
+/lib/modules/4.18.0-187.el8.x86_64/extra/kmod-kvdo/uds
+/lib/modules/4.18.0-187.el8.x86_64/extra/kmod-kvdo/uds/uds.ko
+/lib/modules/4.18.0-187.el8.x86_64/extra/kmod-kvdo/vdo
+/lib/modules/4.18.0-187.el8.x86_64/extra/kmod-kvdo/vdo/kvdo.ko
+/usr/lib/.build-id
+/usr/lib/.build-id/13
+/usr/lib/.build-id/13/4cb380830e58755bdc32cc09718f78132ab9fa
+/usr/lib/.build-id/6f
+/usr/lib/.build-id/6f/eaf669b5109338ae1625a67e066ce03b3d1fef
+/usr/share/doc/kmod-kvdo/greylist.txt
