@@ -5,6 +5,11 @@
 # -s http://mirrors.aliyun.com/centos/8/BaseOS/x86_64/os/ \
 #	-s http://mirrors.aliyun.com/centos/8/AppStream/x86_64/os/ \
 
+REPO=/home/wzq/Centos8/BaseOS
+REPO2=/home/wzq/Centos8/AppStream
+PROTOCL=file
+OUTPUTDIR=`pwd`/build
+
 function update_repo() {
 
   REPO_BASE="/home/wzq/CentosDVD2/AppStream"
@@ -33,7 +38,7 @@ function update_repo() {
 
 function update_repo() {
 
-   REPO_BASE="/home/wzq/CentosDVD2/AppStream"
+  REPO_BASE="/home/wzq/CentosDVD2/AppStream"
 
   # rpmbuild -bb /home/wzq/wk/anaconda/anaconda.spec
   # cp /home/wzq/rpmbuild/RPMS/x86_64/anaconda* ${REPO_BASE}/Packages/
@@ -56,9 +61,9 @@ function update_repo() {
   rm -f ${tmp_comps_xml}
 }
 
-function run() {
+function build() {
 
-	OUTPUTDIR=`pwd`/build
+	
 	LORAXBASE=/home/wzq/wk/lorax
 	export PYTHONPATH=${PYTHONPATH}:${LORAXBASE}/src/
 	export PATH=${LORAXBASE}/src/sbin:${LORAXBASE}/src/bin:${PATH}
@@ -70,15 +75,14 @@ function run() {
 	rm -f   `pwd`/*.log
 	rm -rf `pwd`/tmp
 	rm -rf /var/tmp/lorax.*
+   
 
 	setenforce 0
 
- 	#-s file:///home/wzq/CentosDVD2/BaseOS/ \
-	#-s file:///home/wzq/CentosDVD2/AppStream/ \
 	python3 ${LORAXBASE}/src/sbin/lorax -p "AIOS" -v 8 -r 8  --nomacboot  --volid="AIOS"  --isfinal \
 	--sharedir ${LORAXBASE}/share \
-	-s http://192.168.20.104/centos8/BaseOS \
-	-s http://192.168.20.104/centos8/AppStream \
+	-s ${PROTOCL}://${REPO} \
+	-s ${PROTOCL}://${REPO2} \
 	--tmp `pwd`/tmp \
 	${OUTPUTDIR}
 
@@ -92,18 +96,18 @@ function run() {
 }
 
 function usage() {
-  echo "Usage: ${0} [update_repo | run]"
+  echo "Usage: ${0} [update_repo | build]"
 }
 
 case ${1} in
   "update_repo")
   update_repo
   ;;
-  "run")
-  run 
+  "build")
+  build 
   ;;
   "")
-  run
+  build
   ;;
   *)
   usage ${0}

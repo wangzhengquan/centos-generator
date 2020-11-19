@@ -4,9 +4,9 @@
 #BuildID="$(date +%Y%m%d)"
 ProduceName=AIOS
 ReleaseID=8
-DVD=/home/wzq/CentosDVD2/AppStream/
+DVD=/home/wzq/CentosDVD2
 mirror=file://${DVD}
-dist=./img
+dist=./build
 # mirror=http://mirror.centos.org/centos-7/7/os/x86_64/
 export LC_ALL=C
 function do_clean
@@ -78,15 +78,16 @@ function build() {
 
 function geniso() {
   
-  rm -rf ${dist}/{BaseOS, AppStream}
-  cp -a ${DVD}/{BaseOS, AppStream} ${dist}
+  # rm -rf ${dist}/{BaseOS, AppStream}
+  # cp -a ${DVD}/BaseOS ${DVD}/AppStream ${dist}
+  cp ${DVD}/media.repo ${dist}
   rm -rf ${dist}/BaseOS/Packages/*.i686.rpm
   rm -rf ${dist}/AppStream/Packages/*.i686.rpm
-  rm -rf  ${dist}/images/boot.iso
+  rm -rf ${dist}/images/boot.iso
 
   # cd ${dist}/ && createrepo -g ../config/custome_comps.xml . && cd ../
 
-  # rm -rf *.iso
+  rm -rf *.iso
   # Create the new ISO file.
   genisoimage -U -r -v -T -J -joliet-long                                      \
               -V ${ProduceName} -A ${ProduceName} -volset ${ProduceName}       \
@@ -96,15 +97,28 @@ function geniso() {
               -o ./${ProduceName}-${ReleaseID}.iso \
               ${dist}    
 
+  # genisoimage -U -r -v -T -J -joliet-long                                      \
+  #             -V ${ProduceName} -A ${ProduceName} -volset ${ProduceName}       \
+  #             -c isolinux/boot.cat    -b isolinux/isolinux.bin                 \
+  #             -no-emul-boot -boot-load-size 4 -boot-info-table                 \
+  #             -eltorito-alt-boot -no-emul-boot           \
+  #             -o ./${ProduceName}-${ReleaseID}.iso \
+  #             ${dist}    
 
-  # (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
+
+  if [ $? != 0 ];then
+    echo 'genisoimage failed.'
+    exit $?
+  fi
+
+# (Optional) Use isohybrid if you want to dd the ISO file to a bootable USB key.
   isohybrid ./${ProduceName}-${ReleaseID}.iso
 
 
   # Add an MD5 checksum (to allow testing of media).
-  implantisomd5 ./${ProduceName}-${ReleaseID}iso
+  implantisomd5 ./${ProduceName}-${ReleaseID}.iso
 
-  # scp  ./${ProduceName}-${ReleaseID}.iso 192.168.20.104:~/Downloads/
+  scp  ./${ProduceName}-${ReleaseID}.iso 192.168.20.104:~/Downloads/
   echo "geniso success!"
 }
 

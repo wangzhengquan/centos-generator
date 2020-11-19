@@ -1,6 +1,0 @@
-/etc/X11/xinit/xinitrc.d/00-start-message-bus.sh
-/usr/bin/dbus-launch
-/usr/lib/.build-id
-/usr/lib/.build-id/55
-/usr/lib/.build-id/55/65d9e9055ce3149987f91636c74ff8543c45d3
-/usr/share/man/man1/dbus-launch.1.gz

@@ -1,7 +1,0 @@
-/usr/lib/dracut/modules.d/99squash
-/usr/lib/dracut/modules.d/99squash/clear-squash.sh
-/usr/lib/dracut/modules.d/99squash/init.sh
-/usr/lib/dracut/modules.d/99squash/module-setup.sh
-/usr/lib/dracut/modules.d/99squash/setup-squash.sh
-/usr/lib/dracut/modules.d/99squash/shutdown.sh
-/usr/lib/dracut/modules.d/99squash/squash-mnt-clear.service

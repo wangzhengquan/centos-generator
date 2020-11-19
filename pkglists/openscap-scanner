@@ -1,9 +1,0 @@
-/etc/bash_completion.d
-/etc/bash_completion.d/oscap
-/usr/bin/oscap
-/usr/bin/oscap-chroot
-/usr/lib/.build-id
-/usr/lib/.build-id/c6
-/usr/lib/.build-id/c6/78a03c68725f9dbfeec278c5b38a4fe1343255
-/usr/share/man/man8/oscap-chroot.8.gz
-/usr/share/man/man8/oscap.8.gz
