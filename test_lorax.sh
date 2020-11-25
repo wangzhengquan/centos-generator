@@ -1,14 +1,19 @@
 
-# -s file:///home/wzq/CentosDVD2/BaseOS/ \
-#	-s file:///home/wzq/CentosDVD2/AppStream/ \
+# file:///home/wzq/CentosDVD2/BaseOS/ \
+#	file:///home/wzq/CentosDVD2/AppStream/ \
 
-# -s http://mirrors.aliyun.com/centos/8/BaseOS/x86_64/os/ \
-#	-s http://mirrors.aliyun.com/centos/8/AppStream/x86_64/os/ \
+# http://mirrors.aliyun.com/centos/8/BaseOS/x86_64/os/ \
+#	http://mirrors.aliyun.com/centos/8/AppStream/x86_64/os/ \
 
-REPO=/home/wzq/Centos8/BaseOS
-REPO2=/home/wzq/Centos8/AppStream
-PROTOCL=file
+# https://mirrors.163.com/fedora/releases/33/Everything/x86_64/os/
+# https://mirrors.163.com/fedora/updates/33/Everything/x86_64/
+
+
+REPO="mirrors.163.com/fedora/releases/33/Everything/x86_64/os"
+REPO2="mirrors.163.com/fedora/updates/33/Everything/x86_64"
+PROTOCL=https
 OUTPUTDIR=`pwd`/build
+LORAXBASE=/home/wzq/wk/lorax
 
 function update_repo() {
 
@@ -64,7 +69,7 @@ function update_repo() {
 function build() {
 
 	
-	LORAXBASE=/home/wzq/wk/lorax
+	
 	export PYTHONPATH=${PYTHONPATH}:${LORAXBASE}/src/
 	export PATH=${LORAXBASE}/src/sbin:${LORAXBASE}/src/bin:${PATH}
 
@@ -80,7 +85,8 @@ function build() {
 	setenforce 0
 
 	python3 ${LORAXBASE}/src/sbin/lorax -p "AIOS" -v 8 -r 8  --nomacboot  --volid="AIOS"  --isfinal \
-	--sharedir ${LORAXBASE}/share \
+	--sharedir ${LORAXBASE}/share/templates.d/99-generic \
+  --config ${LORAXBASE}/etc/lorax.conf \
 	-s ${PROTOCL}://${REPO} \
 	-s ${PROTOCL}://${REPO2} \
 	--tmp `pwd`/tmp \
@@ -95,6 +101,20 @@ function build() {
 	echo "genimg success!"
 }
 
+
+function build_livemedia() {
+  export PYTHONPATH=${PYTHONPATH}:${LORAXBASE}/src/
+  export PATH=${LORAXBASE}/src/sbin:${LORAXBASE}/src/bin:${PATH}
+
+  rm -f   `pwd`/*.log
+
+  setenforce 0
+
+  python3  ${LORAXBASE}/src/sbin/livemedia-creator --make-iso \
+  --lorax-templates ${LORAXBASE}/share/templates.d/99-generic \
+  --iso=boot.iso --ks=${LORAXBASE}/docs/fedora-livemedia.ks
+}
+
 function usage() {
   echo "Usage: ${0} [update_repo | build]"
 }
@@ -107,7 +127,7 @@ case ${1} in
   build 
   ;;
   "")
-  build
+  build_livemedia
   ;;
   *)
   usage ${0}
